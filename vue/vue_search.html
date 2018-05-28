@@ -1,0 +1,67 @@
+<!DOCTYPE HTML>
+<html>
+<style>
+	[v-cloak]{display: none;}  
+</style>
+<html>
+	<head>
+		<title>Vue</title>
+		<meta charset=UTF-8>
+		<script src="https://cdn.bootcss.com/vue/2.1.8/vue.js"></script>
+	</head>
+
+	<body>
+		<div id="app" v-cloak>
+			<h1>{{message}}</h1>
+			<ul>
+					<li  v-for="item in reverseMessage">
+							<span v-html="item.title">{{item.title}}</span>----<span v-html="item.details">{{item.details}}</span></span>
+					</li>
+			</ul>
+			
+		</div>
+	</body>
+	<script>
+		var vm = new Vue({
+			el: '#app',
+			data: {
+				message: 'Hi Vue!',
+				list:[],
+				list2:[],
+				searchValue: "中国"
+			},
+			created:function(){
+//				this.list = [
+//								{title:'java实战',details:'很好的书，不错的书'},
+//								{title:'java教程',details:'很好的书，不错的书,我们都有一个家，名字叫中国'},
+//								{title:'vue教程',details:'我们都有一个家，名字叫中国'}
+//							];
+//				this.list.filter(function (item) {
+//					item.title = item.title.replace(new RegExp('教程',"gm"),"<span style='color: red;'>jc</span>");
+//  			});			
+			},
+			mounted:function(){
+				this.list = [
+								{title:'java实战中国',details:"很好的书，不错的书"},
+								{title:'java教程中国',details:'很好的书，不错的书,我们都有一个家，名字叫中国'},
+								{title:'vue教程',details:'我们都有一个家，名字叫中国'}
+							];
+							
+//				this.list.filter(function (item) {
+//					item.title = item.title.replace(new RegExp('教程',"gm"),"<span style='color: red;'>教程</span>");
+//    			});
+			},
+			computed: {
+				reverseMessage: function() {
+			            let that = this;
+						that.list.filter(function (item) {
+							item.title = item.title.replace(new RegExp(that.searchValue,"gm"),"<span style='color: red;'>"+that.searchValue+"</span>");
+							item.details = item.details.replace(new RegExp(that.searchValue,"gm"),"<span style='color: red;'>"+that.searchValue+"</span>");
+	      				})
+						return that.list;
+						//location.reload(); 
+				}
+			}
+		})
+	</script>
+</html>

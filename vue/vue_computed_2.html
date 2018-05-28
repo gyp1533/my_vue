@@ -1,0 +1,62 @@
+<html>
+
+	<head>
+		<title>Vue</title>
+		<script src="https://cdn.bootcss.com/vue/2.1.8/vue.js"></script>
+	</head>
+
+	<body>
+		<div id="app">
+			<div :class="classA">郭云鹏</div>
+		</div>
+	</body>
+	<script>
+		var vm = new Vue({
+			el: '#app',
+			data: {
+  				classA: 'class-a'  //当classA改变时将更新class
+			},
+			methods: {
+				
+			}
+		})
+	</script>
+	
+	
+	<template>
+    <div id="demo">
+         <p> {{ fullName }} </p>
+         <input type="text" v-model="fullName">
+         <input type="text" v-model="firstName">
+         <input type="text" v-model="lastName">
+    </div>
+</template>
+
+var vm = new Vue({
+  el: '#demo',
+  data: {
+    firstName: guo',
+    lastName: 'yunpeng'
+  },
+  computed: {
+    fullName: {
+        getter(){
+            console.log('computed getter...')
+            return this.firstName + ' ' + this.lastName
+        }，
+        setter(newValue){
+            console.log('computed setter...')
+            var names = newValue.split(' ')
+            this.firstName = names[0]
+            this.lastName = names[names.length - 1]
+            return this.firstName + ' ' + this.lastName
+        }
+      
+    }
+  },
+  updated () {
+     console.log('updated')
+  }
+})
+
+</html>

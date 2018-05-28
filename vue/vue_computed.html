@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html>
+
+<html>
+	<head>
+		<title>Vue</title>
+		<meta charset=UTF-8>
+		<script src="https://cdn.bootcss.com/vue/2.1.8/vue.js"></script>
+	</head>
+
+	<body>
+		<div id="app">
+			<h1>{{message}}</h1>
+			<h2>{{reverseMessage}}</h2>
+		</div>
+	</body>
+	<script>
+		var vm = new Vue({
+			el: '#app',
+			data: {
+				message: 'Hi Vue!'
+			},
+			computed: {
+				reverseMessage: function() {
+					return this.message.split(' ').reverse().join('');
+				}
+			}
+		})
+	</script>
+</html>
